@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,12 +14,15 @@ public class Boid : MonoBehaviour
     public float cohesionWeight;
     public float alignWeight;
     public float separationWeight;
-
+    
+    private Hunter _hunter;
     private Vector3 _velocity;
 
     private void Start()
     {
         GameManager.instance.allBoids.Add(this);
+
+        _hunter = GameObject.FindObjectOfType<Hunter>();
 
         float randomX = Random.Range(-10, 10);
         float randomZ = Random.Range(-10, 10);
@@ -50,22 +54,26 @@ public class Boid : MonoBehaviour
     
     private void CheckBounds()
     {
-        if (transform.position.z > 9) 
-            transform.position = new Vector3(transform.position.x, transform.position.y, -7.5f);
+        if (transform.position.z > GameManager.instance.globalZLimit) 
+            transform.position = new Vector3(transform.position.x, transform.position.y, -GameManager.instance.globalZLimit);
         
-        if (transform.position.z < -7.5f) 
-            transform.position = new Vector3(transform.position.x, transform.position.y, 9);
+        if (transform.position.z < -GameManager.instance.globalZLimit) 
+            transform.position = new Vector3(transform.position.x, transform.position.y, GameManager.instance.globalZLimit);
         
-        if (transform.position.x > 15) 
-            transform.position = new Vector3(-15.5f, transform.position.y, transform.position.z);
+        if (transform.position.x > GameManager.instance.globalXLimit) 
+            transform.position = new Vector3(-GameManager.instance.globalXLimit, transform.position.y, transform.position.z);
         
-        if (transform.position.x < -15.5f) 
-            transform.position = new Vector3(15, transform.position.y, transform.position.z);
+        if (transform.position.x < -GameManager.instance.globalXLimit) 
+            transform.position = new Vector3(GameManager.instance.globalXLimit, transform.position.y, transform.position.z);
     }
     
     private void Move()
     {
-        ApplyForce(CalculateSteering(SteeringType.Cohesion) * cohesionWeight + CalculateSteering(SteeringType.Align) * alignWeight + CalculateSteering(SteeringType.Separation) * separationWeight);
+        Vector3 dist = _hunter.transform.position - transform.position;
+        if (dist.magnitude <= viewDistance)
+            Evade();
+        else
+            ApplyForce(CalculateSteering(SteeringType.Cohesion) * cohesionWeight + CalculateSteering(SteeringType.Align) * alignWeight + CalculateSteering(SteeringType.Separation) * separationWeight);
 
         transform.position += _velocity * Time.deltaTime;
         transform.forward = _velocity.normalized;
@@ -118,6 +126,55 @@ public class Boid : MonoBehaviour
 
         return steering;
     }
+    
+    private void Evade()
+    {
+        Vector3 objective = _hunter.transform.position + _hunter.GetVelocity();
+    
+        if (_hunter != null)
+            _hunter.transform.position = objective;
+
+        Vector3 desired = objective - transform.position;
+        desired.Normalize();
+        desired *= maxSpeed;
+        desired *= -1;
+
+        Vector3 steering = desired - _velocity;
+        steering = Vector3.ClampMagnitude(steering, maxForce);
+    
+        _velocity = Vector3.ClampMagnitude(_velocity + steering, maxSpeed);
+    }
+    
+    /*pirvate void Arrive()
+    {
+        Vector3 desired;
+        desired = Target.transform.position - transform.position;
+
+        float dist = (Target.transform.position - transform.position).magnitude;
+
+        
+        if (dist < ArrivalRange)
+        {
+            float speed = Map(dist, 0, ArrivalRange, 0, MaxSpeed);
+            
+            desired.Normalize();
+            desired *= speed;
+            GetComponent<Renderer>().material.color = Color.red;
+        }
+        else
+        {
+            desired.Normalize();
+            desired *= MaxSpeed;
+            GetComponent<Renderer>().material.color = Color.white;
+        }
+
+        Vector3 steering = desired - _velocity;
+        steering = Vector3.ClampMagnitude(steering, MaxForce);
+
+        _velocity = Vector3.ClampMagnitude(_velocity + steering, MaxSpeed);
+        transform.position += _velocity * Time.deltaTime;
+        transform.forward = _velocity.normalized;
+    }*/
     
     private void ApplyForce(Vector3 force)
     {
