@@ -77,9 +77,9 @@ public class Boid : MonoBehaviour
         else
         {
             Collider[] colls = Physics.OverlapSphere(transform.position, viewDistance, 1<<9);
-
+            
             if (colls.Length > 0)
-                Arrive(colls[0].transform);
+                 Arrive(colls[0].transform);
             else
                 ApplyForce(CalculateSteering(SteeringType.Cohesion) * cohesionWeight +
                            CalculateSteering(SteeringType.Align) * alignWeight +
@@ -141,9 +141,6 @@ public class Boid : MonoBehaviour
     private void Evade()
     {
         Vector3 objective = _hunter.transform.position + _hunter.GetVelocity();
-    
-        if (_hunter != null)
-            _hunter.transform.position = objective;
 
         Vector3 desired = objective - transform.position;
         desired.Normalize();
