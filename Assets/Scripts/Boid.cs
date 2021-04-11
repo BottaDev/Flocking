@@ -69,11 +69,22 @@ public class Boid : MonoBehaviour
     
     private void Move()
     {
-        Vector3 dist = _hunter.transform.position - transform.position;
-        if (dist.magnitude <= viewDistance)
-            Evade();
+        Vector3 hunterDistance = _hunter.transform.position - transform.position;
+        if (hunterDistance.magnitude <= viewDistance)
+        {
+            Evade();   
+        }
         else
-            ApplyForce(CalculateSteering(SteeringType.Cohesion) * cohesionWeight + CalculateSteering(SteeringType.Align) * alignWeight + CalculateSteering(SteeringType.Separation) * separationWeight);
+        {
+            Collider[] colls = Physics.OverlapSphere(transform.position, viewDistance, 1<<9);
+
+            if (colls.Length > 0)
+                Arrive(colls[0].transform);
+            else
+                ApplyForce(CalculateSteering(SteeringType.Cohesion) * cohesionWeight +
+                           CalculateSteering(SteeringType.Align) * alignWeight +
+                           CalculateSteering(SteeringType.Separation) * separationWeight);
+        }
 
         transform.position += _velocity * Time.deltaTime;
         transform.forward = _velocity.normalized;
@@ -145,36 +156,23 @@ public class Boid : MonoBehaviour
         _velocity = Vector3.ClampMagnitude(_velocity + steering, maxSpeed);
     }
     
-    /*pirvate void Arrive()
+    private void Arrive(Transform target)
     {
         Vector3 desired;
-        desired = Target.transform.position - transform.position;
+        desired = target.transform.position - transform.position;
 
-        float dist = (Target.transform.position - transform.position).magnitude;
-
+        float dist = (target.transform.position - transform.position).magnitude;
         
-        if (dist < ArrivalRange)
-        {
-            float speed = Map(dist, 0, ArrivalRange, 0, MaxSpeed);
+        float speed = Map(dist, 0, viewDistance, 0, maxSpeed);
             
-            desired.Normalize();
-            desired *= speed;
-            GetComponent<Renderer>().material.color = Color.red;
-        }
-        else
-        {
-            desired.Normalize();
-            desired *= MaxSpeed;
-            GetComponent<Renderer>().material.color = Color.white;
-        }
+        desired.Normalize();
+        desired *= speed;
 
         Vector3 steering = desired - _velocity;
-        steering = Vector3.ClampMagnitude(steering, MaxForce);
+        steering = Vector3.ClampMagnitude(steering, maxForce);
 
-        _velocity = Vector3.ClampMagnitude(_velocity + steering, MaxSpeed);
-        transform.position += _velocity * Time.deltaTime;
-        transform.forward = _velocity.normalized;
-    }*/
+        _velocity = Vector3.ClampMagnitude(_velocity + steering, maxSpeed);
+    }
     
     private void ApplyForce(Vector3 force)
     {
@@ -186,6 +184,11 @@ public class Boid : MonoBehaviour
         return _velocity;
     }
 
+    float Map(float from, float fromMin, float fromMax, float toMin, float toMax)
+    {
+        return (from - toMin) / (fromMax - fromMin) * (toMax - toMin) + fromMin;
+    }
+    
     private enum SteeringType
     {
         Separation,

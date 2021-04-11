@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    private void Start()
-    {
-        GameManager.instance.allFoods.Add(this);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         // If is Boid...
