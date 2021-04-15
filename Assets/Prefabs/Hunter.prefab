@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6058712022404245110}
   - component: {fileID: 3870811488028579500}
+  - component: {fileID: 7618115208896829540}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -46,12 +47,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 8
   maxForce: 1
+  energy: 20
+  restingTime: 5
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   stoppingDistance: 1
+  currentWayPoint: 0
+  isResting: 0
+  _currentEnergy: 0
+--- !u!114 &7618115208896829540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058712022404245107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d4c5abe23033a4980afa253de849fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &899268768047455171
 PrefabInstance:
   m_ObjectHideFlags: 0
