@@ -304,9 +304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allBoids: []
   globalViewDistance: 5
-  globalCohesionWeight: 0.2
-  globalAlignWeight: 0.8
-  globalSeparationWeight: -1
+  globalCohesionWeight: 3
+  globalAlignWeight: 2
+  globalSeparationWeight: 1
   globalXLimit: 17.5
   globalZLimit: 9.5
 --- !u!4 &161906745
