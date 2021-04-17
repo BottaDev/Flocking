@@ -12,6 +12,8 @@ public class Hunter : MonoBehaviour
     public float maxForce;
     public float energy = 20f;
     public float restingTime = 5f;
+    public float viewDistance = 6f;
+    public Boid target;
     
     [Header("Movement")]
     public Transform[] wayPoints;
@@ -22,7 +24,6 @@ public class Hunter : MonoBehaviour
     public bool isResting = false;
 
     private Vector3 _velocity;
-    [SerializeField]
     private float _currentEnergy;
     private StateMachine _sm;
 
@@ -78,5 +79,11 @@ public class Hunter : MonoBehaviour
         
         if (transform.position.x < -GameManager.instance.globalXLimit) 
             transform.position = new Vector3(GameManager.instance.globalXLimit, transform.position.y, transform.position.z);
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, viewDistance);
     }
 }

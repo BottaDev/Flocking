@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 86125321}
   - component: {fileID: 86125324}
   - component: {fileID: 86125323}
-  - component: {fileID: 86125322}
   m_Layer: 0
   m_Name: Point C
   m_TagString: Untagged
@@ -153,19 +152,6 @@ Transform:
   m_Father: {fileID: 1943895097}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &86125322
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86125320}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &86125323
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -173,7 +159,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86125320}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1721,7 +1707,6 @@ GameObject:
   - component: {fileID: 1922547835}
   - component: {fileID: 1922547838}
   - component: {fileID: 1922547837}
-  - component: {fileID: 1922547836}
   m_Layer: 0
   m_Name: Point A
   m_TagString: Untagged
@@ -1743,19 +1728,6 @@ Transform:
   m_Father: {fileID: 1943895097}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1922547836
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922547834}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1922547837
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1763,7 +1735,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922547834}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1921,7 +1893,6 @@ GameObject:
   - component: {fileID: 2026792109}
   - component: {fileID: 2026792112}
   - component: {fileID: 2026792111}
-  - component: {fileID: 2026792110}
   m_Layer: 0
   m_Name: Point B
   m_TagString: Untagged
@@ -1943,19 +1914,6 @@ Transform:
   m_Father: {fileID: 1943895097}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2026792110
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026792108}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2026792111
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1963,7 +1921,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026792108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2013,7 +1971,6 @@ GameObject:
   - component: {fileID: 2051257599}
   - component: {fileID: 2051257602}
   - component: {fileID: 2051257601}
-  - component: {fileID: 2051257600}
   m_Layer: 0
   m_Name: Point D
   m_TagString: Untagged
@@ -2035,19 +1992,6 @@ Transform:
   m_Father: {fileID: 1943895097}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2051257600
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051257598}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2051257601
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2055,7 +1999,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051257598}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2204,6 +2148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: energy
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870811488028579500, guid: c18abee805a946f4c88d8bf4226e6663,
+        type: 3}
+      propertyPath: viewDistance
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6058712022404245107, guid: c18abee805a946f4c88d8bf4226e6663,
         type: 3}

@@ -176,7 +176,7 @@ public class Boid : MonoBehaviour
         _velocity = Vector3.ClampMagnitude(_velocity + force, maxSpeed);
     }
     
-    private Vector3 GetVelocity()
+    public Vector3 GetVelocity()
     {
         return _velocity;
     }

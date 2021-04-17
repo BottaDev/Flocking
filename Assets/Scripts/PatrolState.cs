@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PatrolState :  IState
@@ -36,17 +37,27 @@ public class PatrolState :  IState
 
     public void Move()
     {
-        Vector3 pointDistance = _hunter.wayPoints[_hunter.currentWayPoint].transform.position - _hunter.transform.position;
-        
-        if (pointDistance.magnitude < _hunter.stoppingDistance)
+        Collider[] colls = Physics.OverlapSphere(_hunter.transform.position, _hunter.viewDistance, 1<<8);
+
+        if (colls.Length > 0)
         {
-            _hunter.currentWayPoint++;
-            if (_hunter.currentWayPoint > _hunter.wayPoints.Length - 1)
-                _hunter.currentWayPoint = 0;
+            _hunter.target = colls[0].transform.parent.root.gameObject.GetComponent<Boid>();
+            _sm.ChangeState("ChaseState");
         }
+        else
+        {
+            Vector3 pointDistance = _hunter.wayPoints[_hunter.currentWayPoint].transform.position - _hunter.transform.position;
         
-        Seek();
+            if (pointDistance.magnitude < _hunter.stoppingDistance)
+            {
+                _hunter.currentWayPoint++;
+                if (_hunter.currentWayPoint > _hunter.wayPoints.Length - 1)
+                    _hunter.currentWayPoint = 0;
+            }
         
+            Seek();   
+        }
+
         _hunter.transform.position += _hunter.GetVelocity() * Time.deltaTime;
         _hunter.transform.forward = _hunter.GetVelocity();
     }

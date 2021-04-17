@@ -22,16 +22,6 @@ public class StateMachine : MonoBehaviour
     {
         _stateDictionary.Add(id, state);
     }
-
-    public void RemoveState(string id)
-    {
-        _stateDictionary.Remove(id);
-    }
-
-    public void ClearStates()
-    {
-        _stateDictionary.Clear();
-    }
 }
 
 public class EmptyState : IState
