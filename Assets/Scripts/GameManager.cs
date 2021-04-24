@@ -8,10 +8,10 @@ public class GameManager : MonoBehaviour
     [Header("Boid Settings")]
     public List<Boid> allBoids = new List<Boid>();
 
-    public float globalViewDistance;
-    public float globalCohesionWeight;
-    public float globalAlignWeight;
-    public float globalSeparationWeight;
+    public float globalViewDistance = 5;
+    public float globalCohesionWeight = 0.8f;
+    public float globalAlignWeight = 0.5f;
+    public float globalSeparationWeight = 0.3f;
 
     [Header("Food Settings")]
     public float globalXLimit = 17.5f;

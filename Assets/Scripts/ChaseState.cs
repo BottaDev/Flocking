@@ -28,21 +28,18 @@ public class ChaseState : IState
         Vector3 boidDistance = _hunter.target.transform.position - _hunter.transform.position;
         
         if (boidDistance.magnitude <= _hunter.viewDistance)
-            Pursuit();
+            Seek();
         else
             _hunter.target = null;
 
         _hunter.transform.position += _hunter.GetVelocity() * Time.deltaTime;
         _hunter.transform.forward = _hunter.GetVelocity();
     }
-    
-    private void Pursuit()
+
+    private void Seek()
     {
         Vector3 desired;
-
-        Vector3 futurePos = _hunter.target.transform.position + _hunter.target.GetVelocity();
-
-        desired = futurePos - _hunter.transform.position;
+        desired = _hunter.target.transform.position - _hunter.transform.position;
         desired.Normalize();
         desired *= _hunter.maxSpeed;
 

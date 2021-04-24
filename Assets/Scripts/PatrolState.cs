@@ -14,22 +14,6 @@ public class PatrolState :  IState
     public void OnUpdate()
     {
         Move();
-        CheckEnergy();
-    }
-
-    public void Rest()
-    {
-        _hunter.isResting = true;
-        _hunter.SetCurrentEnergy(_hunter.energy);
-        _sm.ChangeState("RestState");
-    }
-
-    public void CheckEnergy()
-    {
-        _hunter.SetCurrentEnergy(_hunter.GetCurrentEnergy() - Time.deltaTime);
-        
-        if (_hunter.GetCurrentEnergy() <= 0 && !_hunter.isResting)
-            Rest();
     }
 
     public void Move()

@@ -124,9 +124,14 @@ public class Boid : MonoBehaviour
 
         desired /= visibleBoids;
 
-        desired -= transform.position;
+        if (type == SteeringType.Cohesion)
+            desired -= transform.position;
+        
         desired.Normalize();
         desired *= maxSpeed;
+
+        if (type == SteeringType.Separation)
+            desired *= -1;
 
         Vector3 steering = desired - _velocity;
         steering = Vector3.ClampMagnitude(desired, maxForce);
@@ -136,16 +141,18 @@ public class Boid : MonoBehaviour
     
     private void Evade()
     {
-        Vector3 objective = _hunter.transform.position + _hunter.GetVelocity();
+        Vector3 desired;
 
-        Vector3 desired = objective - transform.position;
+        Vector3 futurePos = _hunter.transform.position + _hunter.GetVelocity();
+
+        desired = futurePos - transform.position;
         desired.Normalize();
         desired *= maxSpeed;
         desired *= -1;
 
         Vector3 steering = desired - _velocity;
         steering = Vector3.ClampMagnitude(steering, maxForce);
-    
+
         _velocity = Vector3.ClampMagnitude(_velocity + steering, maxSpeed);
     }
     

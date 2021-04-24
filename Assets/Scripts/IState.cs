@@ -6,6 +6,4 @@ public interface IState
 {
     void OnUpdate();
     void Move();
-    void Rest();
-    void CheckEnergy();
 }

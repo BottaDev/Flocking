@@ -18,14 +18,7 @@ public class RestState : IState
     {
         Move();
 
-        _timer += Time.deltaTime;
-        
-        if (_timer >= _hunter.restingTime && _hunter.isResting)
-        {
-            _hunter.isResting = false;
-            _timer = 0;
-            _sm.ChangeState("PatrolState");
-        }
+        Rest();
     }
 
     public void Move()
@@ -34,11 +27,15 @@ public class RestState : IState
             _hunter.SetVelocity(new Vector3(0,0,0));    // Hunter stays idle...
     }
 
-    public void CheckEnergy()
+    private void Rest()
     {
-    }
-    
-    public void Rest()
-    {
+        _timer += Time.deltaTime;
+        
+        if (_timer >= _hunter.restingTime && _hunter.isResting)
+        {
+            _hunter.isResting = false;
+            _timer = 0;
+            _sm.ChangeState("PatrolState");
+        }
     }
 }
