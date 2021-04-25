@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Boid : MonoBehaviour
@@ -143,7 +144,7 @@ public class Boid : MonoBehaviour
     {
         Vector3 desired;
 
-        Vector3 futurePos = _hunter.transform.position + _hunter.GetVelocity();
+        Vector3 futurePos = _hunter.transform.position + _hunter.GetVelocity() * Time.deltaTime;
 
         desired = futurePos - transform.position;
         desired.Normalize();
@@ -194,6 +195,16 @@ public class Boid : MonoBehaviour
         Separation,
         Align,
         Cohesion
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Hunter layer
+        if (other.gameObject.layer == 10)
+        {
+            GameManager.instance.allBoids.Remove(this);
+            Destroy(gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()

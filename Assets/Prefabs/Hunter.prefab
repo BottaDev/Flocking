@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &419434707988706488
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3411335532547270487}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -2432090755550338912, guid: 4276e7c467d701642b84b76918fb2c22, type: 3}
 --- !u!1 &6058712022404245107
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +25,7 @@ GameObject:
   - component: {fileID: 6058712022404245110}
   - component: {fileID: 3870811488028579500}
   - component: {fileID: 7618115208896829540}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hunter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +63,8 @@ MonoBehaviour:
   maxForce: 1
   energy: 20
   restingTime: 5
+  viewDistance: 6
+  target: {fileID: 0}
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -57,7 +73,6 @@ MonoBehaviour:
   stoppingDistance: 1
   currentWayPoint: 0
   isResting: 0
-  _currentEnergy: 0
 --- !u!114 &7618115208896829540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,11 +172,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boid
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4276e7c467d701642b84b76918fb2c22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534866581884222612, guid: 4276e7c467d701642b84b76918fb2c22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4276e7c467d701642b84b76918fb2c22, type: 3}
 --- !u!4 &5260324076589412569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4276e7c467d701642b84b76918fb2c22,
+    type: 3}
+  m_PrefabInstance: {fileID: 899268768047455171}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3411335532547270487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2534866581884222612, guid: 4276e7c467d701642b84b76918fb2c22,
     type: 3}
   m_PrefabInstance: {fileID: 899268768047455171}
   m_PrefabAsset: {fileID: 0}
