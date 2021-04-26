@@ -11,7 +11,8 @@ public class Boid : MonoBehaviour
     public float cohesionWeight;
     public float alignWeight;
     public float separationWeight;
-    
+
+    private float separationRadius = 1.5f;
     private Hunter _hunter;
     private Vector3 _velocity;
 
@@ -97,7 +98,7 @@ public class Boid : MonoBehaviour
             if (boid != null && boid != this)
             {
                 Vector3 dist = boid.transform.position - transform.position;
-                if (dist.magnitude < viewDistance)
+                if (dist.magnitude < viewDistance && (type == SteeringType.Align || type == SteeringType.Cohesion))
                 {
                     if (type == SteeringType.Align)
                     {
@@ -108,12 +109,14 @@ public class Boid : MonoBehaviour
                     {
                         desired.x += boid.transform.position.x;
                         desired.z += boid.transform.position.z;   
-                    } 
-                    else if (type == SteeringType.Separation)
-                    {
-                        desired.x += dist.x;
-                        desired.z += dist.z;
                     }
+
+                    visibleBoids++;
+                }
+                else if (dist.magnitude < separationRadius && type == SteeringType.Separation)
+                {
+                    desired.x += dist.x;
+                    desired.z += dist.z;
                     
                     visibleBoids++;
                 }
@@ -211,5 +214,8 @@ public class Boid : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, viewDistance);
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, separationRadius);
     }
 }

@@ -561,9 +561,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allBoids: []
   globalViewDistance: 5
-  globalCohesionWeight: 0.15
+  globalCohesionWeight: 0.3
   globalAlignWeight: 0.8
-  globalSeparationWeight: 0.1
+  globalSeparationWeight: 0.7
   globalXLimit: 17.5
   globalZLimit: 9.5
 --- !u!4 &161906745
@@ -1457,7 +1457,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
